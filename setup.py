@@ -1,13 +1,13 @@
 import glob
 from setuptools import setup, find_packages
-
+from Cython.Build import cythonize
 
 with open("requirements.txt") as f:
     install_requires = [x.rstrip() for x in f]
 
 setup(
     name="viridian_workflow",
-    version="0.3.7",
+    version="0.3.4",
     description="FIXME",
     packages=find_packages(),
     package_data={"viridian_workflow": ["amplicon_scheme_data/*"]},
@@ -27,4 +27,5 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
         "License :: OSI Approved :: MIT License",
     ],
+    ext_modules=cythonize("./viridian_workflow/self_qc.pyx")
 )
