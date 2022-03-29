@@ -359,8 +359,6 @@ def remap(
     stats.reserve(num_row*num_col)
     stats.resize(num_row, vector[int](num_col, 0))
 
-    #cdef int stats[len(consensus_seq)][7]
-
     for r in pysam.AlignmentFile(tagged_bam):
         a = cons.map(r.seq)  # remap to consensus
         alignment = None
@@ -465,7 +463,7 @@ def remap(
     for i in range(len(consensus_seq)):
          stats[i][7] = check_for_failure(stats[i], config)
 
-    print("reads tagged with more than one amplicon: {multi_amplicons}, with zero: {no_amplicons}. tagged: {tagged}.")
+    print("reads tagged with more than one amplicon: {}, with zero: {}. tagged: {}.".format(multi_amplicons, no_amplicons, tagged))
     return stats
 
 
